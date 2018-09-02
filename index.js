@@ -1,16 +1,28 @@
 "use strict";
 var Base = require("mocha").reporters.Base;
+
+/**
+ * @type {typeof import ("allure-js-commons/index")}
+ */
 var Allure = require("allure-js-commons");
 var allureReporter = new Allure();
+
+/**
+ * @type {typeof import ("allure-js-commons/runtime")}
+ */
 var Runtime = require("allure-js-commons/runtime");
 
+/**
+ * @type {import("./types").}
+ */
 global.allure = new Runtime(allureReporter);
 
 /**
  * Initialize a new `Allure` test reporter.
  *
- * @param {Runner} runner
- * @param {Object} opts mocha options
+ * @constructor
+ * @param {Mocha.Runnable} runner
+ * @param {any} opts mocha options
  * @api public
  */
 function AllureReporter(runner, opts) {

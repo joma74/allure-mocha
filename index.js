@@ -1,4 +1,9 @@
 "use strict";
+
+/**
+ * @typedef {import ("allure-js-commons").TESTSTATUS} TESTSTATUS
+ */
+
 var Base = require("mocha").reporters.Base;
 
 /**
@@ -12,9 +17,6 @@ var allureReporter = new Allure();
  */
 var Runtime = require("allure-js-commons/runtime");
 
-/**
- * @type {import("./types").}
- */
 global.allure = new Runtime(allureReporter);
 
 /**
@@ -70,8 +72,11 @@ function AllureReporter(runner, opts) {
         if(!allureReporter.getCurrentTest()) {
             allureReporter.startCase(test.title);
         }
-        var isAssertionError = err.name === "AssertionError" || err.code === "ERR_ASSERTION";
-        var status = isAssertionError ? "failed" : "broken";
+		var isAssertionError = err.name === "AssertionError" || err.code === "ERR_ASSERTION";
+		/**
+		 * @type {TESTSTATUS}
+		 */
+        var status  =  isAssertionError ? "failed" : "broken";
         if(global.onError) {
             global.onError(err);
         }

@@ -24,24 +24,35 @@ global.allure = new Runtime(allureReporter);
  *
  * @constructor
  * @param {Mocha.Runnable} runner
- * @param {any} opts mocha options
- * @api public
+ * @param {any} opts mocha options; reporterOptions are used
  */
 function AllureReporter(runner, opts) {
     Base.call(this, runner);
     allureReporter.setOptions(opts.reporterOptions || {});
 
+	/**
+	 * @param {Function} handler 
+	 */
     function invokeHandler(handler) {
-        return function() {
+		/**
+		 * @this {import("index")}
+		 */
+		var f = function() {
             try {
                 return handler.apply(this, arguments);
             } catch(error) {
                 console.error("Internal error in Allure:", error); // eslint-disable-line no-console
             }
-        };
+		};
+		return f;
     }
 
-    runner.on("suite", invokeHandler(function (suite) {
+    runner.on("suite", invokeHandler(
+		/**
+		 * 
+		 * @param {Mocha.Suite} suite 
+		 */
+		function (suite) {
         allureReporter.startSuite(suite.fullTitle());
     }));
 
@@ -49,13 +60,22 @@ function AllureReporter(runner, opts) {
         allureReporter.endSuite();
     }));
 
-    runner.on("test", invokeHandler(function(test) {
+    runner.on("test", invokeHandler(
+		/**
+		 * 
+		 * @param {Mocha.Test} test 
+		 */
+		function(test) {
         if (typeof test.currentRetry !== "function" || !test.currentRetry()) {
           allureReporter.startCase(test.title);
         }
     }));
 
-    runner.on("pending", invokeHandler(function(test) {
+    runner.on("pending", invokeHandler(
+		/** 
+		 * @param {Mocha.Test} test 
+		*/
+		function(test) {
         var currentTest = allureReporter.getCurrentTest();
         if(currentTest && currentTest.name === test.title) {
             allureReporter.endCase("skipped");
@@ -64,11 +84,21 @@ function AllureReporter(runner, opts) {
         }
     }));
 
-    runner.on("pass", invokeHandler(function() {
+    runner.on("pass", invokeHandler(
+		/**
+		 * 
+		 */
+		function() {
         allureReporter.endCase("passed");
     }));
 
-    runner.on("fail", invokeHandler(function(test, err) {
+    runner.on("fail", invokeHandler(
+		/**
+		 * 
+		 * @param {Mocha.Test} test 
+		 * @param {import("assert").AssertionError} err 
+		 */
+		function(test, err) {
         if(!allureReporter.getCurrentTest()) {
             allureReporter.startCase(test.title);
         }
@@ -83,7 +113,12 @@ function AllureReporter(runner, opts) {
         allureReporter.endCase(status, err);
     }));
 
-    runner.on("hook end", invokeHandler(function(hook) {
+    runner.on("hook end", invokeHandler(
+		/**
+		 * 
+		 * @param {Mocha.Hook} hook 
+		 */
+		function(hook) {
         if(hook.title.indexOf('"after each" hook') === 0) {
             allureReporter.endCase("passed");
         }

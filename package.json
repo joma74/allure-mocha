@@ -5,6 +5,8 @@
   "main": "index.js",
   "repository": "git@github.com:allure-framework/mocha-allure-reporter.git",
   "scripts": {
+	"tsc_validate": "/bin/bash -c 'node_modules/typescript/bin/tsc --project ./jsconfig.json --noEmit true --traceResolution true | tee target/tsc.trace1.log; echo $?'",
+	"tsc_listFiles": "node_modules/typescript/bin/tsc --project ./jsconfig.json --noEmit true --listFiles",
     "pretest": "eslint --ignore-path=.gitignore .",
     "test": "npm run unit && npm run e2e-test",
     "unit": "mocha test/unit/",
@@ -13,8 +15,14 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/libxmljs": "^0.18.1",
     "@types/mocha": "^5.2.5",
+    "@types/mockery": "^1.4.29",
     "@types/node": "^10.9.4",
+    "@types/object-assign": "^4.0.30",
+    "@types/sinon": "^5.0.2",
+    "@types/sinon-chai": "^3.2.0",
     "allure-commandline": "^2.0.0",
     "chai": "^4.1.2",
     "dirty-chai": "^2.0.1",

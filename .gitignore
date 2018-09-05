@@ -4,3 +4,6 @@ test/e2e/report
 
 # Dependency directory
 node_modules
+
+target/*
+!target/.gitkeep

@@ -1,14 +1,19 @@
 {
     "compilerOptions": {
+		"allowSyntheticDefaultImports": true,
 		"checkJs": true,
 		"module": "commonjs",
-        "moduleResolution": "node",
+		"moduleResolution": "node",
+		"strict": true,
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"target": "es5",
         "baseUrl": ".",
         "lib": [
             "es2015",
             "dom"
-        ]
-    },
+		]
+	},
     "exclude": [
         "node_modules"
     ],

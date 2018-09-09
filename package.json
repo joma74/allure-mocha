@@ -8,7 +8,7 @@
     "tsc_validate_watch": "node_modules/typescript/bin/tsc --project ./jsconfig.json --noEmit true --traceResolution true --watch",
     "tsc_validate": "node_modules/typescript/bin/tsc --project ./jsconfig.json --noEmit true",
     "tsc_log_validate": "/bin/bash -c 'node_modules/typescript/bin/tsc --project ./jsconfig.json --noEmit true --traceResolution true | tee target/tsc.trace.log; echo $?'",
-    "pretest": "eslint --ignore-path=.gitignore .",
+    "pretest": "eslint --fix --ignore-path=.gitignore . && yarn tsc_validate",
     "test": "npm run unit && npm run e2e-test",
     "unit": "mocha test/unit/",
     "e2e-clean": "rm -rf test/e2e/results",

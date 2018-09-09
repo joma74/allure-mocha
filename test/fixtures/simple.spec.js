@@ -6,7 +6,7 @@ var expect = chai.expect;
 chai.use(require("dirty-chai"));
 
 describe("A mocha suite", function() {
-    var dumpLog = allure.createAttachment("my log [{0}]", function(level, log) {
+    var dumpLog = global.allure.createAttachment("my log [{0}]", function(level, log) {
         return new Buffer(log, "utf-8");
     });
     var firstStep = allure.createStep("simple step", function() {});

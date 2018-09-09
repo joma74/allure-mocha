@@ -2,19 +2,15 @@
 
 /**
  * @typedef {import ("allure-js-commons").TESTSTATUS} TESTSTATUS
+ * @typedef {import ("allure-js-commons/runtime")} RuntimeType
+ * @typedef {import ("allure-js-commons/index")} AllureType
  */
 
 var Base = require("mocha").reporters.Base;
 
-/**
- * @type {typeof import ("allure-js-commons/index")}
- */
 var Allure = require("allure-js-commons");
 var allureReporter = new Allure();
 
-/**
- * @type {typeof import ("allure-js-commons/runtime")}
- */
 var Runtime = require("allure-js-commons/runtime");
 
 global.allure = new Runtime(allureReporter);
@@ -66,6 +62,7 @@ function AllureReporter(runner, opts) {
 		 * @param {Mocha.Test} test 
 		 */
 		function(test) {
+        // @ts-ignore
         if (typeof test.currentRetry !== "function" || !test.currentRetry()) {
           allureReporter.startCase(test.title);
         }

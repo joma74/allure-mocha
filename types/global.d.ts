@@ -1,9 +1,13 @@
-import Runtime from "allure-js-commons/runtime";
+/// <reference types="node" />
+
+export = global;
+
+import Runtime from "allure-js-commons/runtime"
 
 declare global {
 	namespace NodeJS  {
 		interface Global {
-			allure: typeof Runtime
+			allure: Runtime
 			onError(err: Error): void
 		}
 	}

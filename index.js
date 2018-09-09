@@ -18,7 +18,7 @@ global.allure = new Runtime(allureReporter);
 /**
  * Initialize a new `Allure` test reporter.
  *
- * @constructor
+ * @class
  * @param {Mocha.Runnable} runner
  * @param {any} opts mocha options; reporterOptions are used
  */

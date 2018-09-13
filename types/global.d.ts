@@ -1,8 +1,7 @@
 /// <reference types="node" />
 
-export = global;
-
 import Runtime from "allure-js-commons/runtime"
+type Runtime = typeof Runtime
 
 declare global {
 	namespace NodeJS  {
@@ -13,4 +12,4 @@ declare global {
 	}
 }
 
-export { }
+export { allure, global }

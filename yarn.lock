@@ -17,8 +17,8 @@
   resolved "https://registry.yarnpkg.com/@types/events/-/events-1.2.0.tgz#81a6731ce4df43619e5c8c945383b3e62a89ea86"
 
 "@types/libxmljs@^0.18.1":
-  version "0.18.1"
-  resolved "https://registry.yarnpkg.com/@types/libxmljs/-/libxmljs-0.18.1.tgz#b03d36e32a373cf9939997fc22f8958ebcec9e08"
+  version "0.18.2"
+  resolved "https://registry.yarnpkg.com/@types/libxmljs/-/libxmljs-0.18.2.tgz#c424173a07477a7552173d7c779d5ffe77dd8efc"
   dependencies:
     "@types/events" "*"
     "@types/node" "*"
@@ -1239,8 +1239,8 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
 typescript@^3.1.0-dev.20180901:
-  version "3.1.0-dev.20180907"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.0-dev.20180907.tgz#3a56e9934287224e8dd8d1d0329f5bb65d652436"
+  version "3.1.0-rc.20180911"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.0-rc.20180911.tgz#73654821f9064dfe75a0440899ff0e2238338584"
 
 universalify@^0.1.0:
   version "0.1.2"
